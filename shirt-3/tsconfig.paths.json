@@ -12,6 +12,7 @@
         "@hook/*": ["src/hooks/*"],
         "@store/*": ["src/stores/*"],
         "@asset/*": ["src/assets/*"],
+        "@motion/*": ["src/motions/*"],
         "@config/*": ["src/configs/*"],
       }
     }
