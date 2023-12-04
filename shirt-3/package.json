@@ -13,6 +13,8 @@
     "@react-three/drei": "^9.89.0",
     "@react-three/fiber": "^8.15.11",
     "framer-motion": "^10.16.9",
+    "gltfjsx": "^6.2.15",
+    "jquery": "^3.7.1",
     "maath": "^0.10.4",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
@@ -23,6 +25,7 @@
     "vite-tsconfig-paths": "^4.2.1"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.29",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
