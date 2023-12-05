@@ -22,8 +22,11 @@ const Tab:React.FC<props> = ({
       key={tab?.name}
       className={`w-14 h-14 flex justify-center items-center cursor-pointer select-none ${isFilterTab ? 'rounded-full glassmorphism': 'rounded-4'}`}
       style={activeStyles}
+      onClick={handleClick}
     >
-      <img src={tab?.icon}/>
+      <img src={tab?.icon} 
+      alt={tab?.name} 
+      className={`${isFilterTab ?  'w-2/3 h-2/3' : 'w-11/12 h-11/12 object-contain'}`}/>
     </div>
   )
 }

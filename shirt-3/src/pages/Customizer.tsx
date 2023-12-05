@@ -9,9 +9,38 @@ import { EditorTabs,FilterTabs, DecalTypes } from "@config/contants"
 import { fadeAnimation,slideAnimation } from "@motion/motion"
 import Tab from "@comp/Tab/Tab"
 import CustomButton from "@comp/Button/CustomButton"
+import ColorPiker from "@comp/Picker/ColorPiker"
+import FilePicker from "@comp/Picker/FilePicker"
+import AIPicker from "@comp/Picker/AIPicker"
 
+interface propsFilterTab{
+  logoShirt:boolean,
+  stylishShirt:boolean,
+}
 const Customizer = () => {
   const snap=useSnapshot(state)
+  const [file, setFile]=useState('')
+  const [promot, setPromot] = useState('')
+  const [generatingImg, setGeneratingImg] = useState(false)
+  const [activeEditorTab,setActiveEditorTab]=useState("")
+  const [activeFilterTab, setActiveFilterTab] = useState<propsFilterTab>({
+    logoShirt:true,
+    stylishShirt:false
+  })
+
+  const generateTabContent=()=>{
+    switch(activeEditorTab){
+      case 'colorpicker':
+          return <ColorPiker/>
+      case 'filepicker':
+          return <FilePicker/>
+      case 'aipicker':
+          return  <AIPicker/>
+      default:
+          return null;
+    }
+  }
+  console.log(activeEditorTab)
   return (
     <AnimatePresence>
       {
@@ -26,14 +55,13 @@ const Customizer = () => {
                 <div className="w-16 border-[2px] rounded-lg flex flex-col justify-center items-center ml-1 py-3 gap-4 ">
                   {EditorTabs.map((tab)=>(
                     <Tab
-                    key={tab.name}
-                    tab={tab}
-                    isFilterTab
-                    isActiveTab=""
-                    handleClick={()=>{}}
+                     key={tab.name}
+                     tab={tab}
+                     handleClick={()=>setActiveEditorTab(tab.name)}
                     />
                   ))}
                 </div>
+                  {generateTabContent()}
               </div>
             </motion.div>
             <motion.div
