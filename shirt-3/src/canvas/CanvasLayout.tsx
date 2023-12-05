@@ -6,10 +6,16 @@ import CameraRight from './CameraRight'
 
 const CanvasLayout = () => {
   return (
-    <Canvas>
+    <Canvas
+      shadows
+      camera={{ position: [0, 0, 0], fov: 25 }}
+      gl={{ preserveDrawingBuffer: true }}
+      className="w-full max-w-full h-full transition-all ease-linear"
+    >
       <ambientLight intensity={0.5} />
       <Environment preset='city' />
       <CameraRight>
+        <BackDrop/>
         <Center>
           <Shirt />
         </Center>
