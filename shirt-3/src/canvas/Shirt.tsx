@@ -8,22 +8,50 @@ import { GLTF } from 'three-stdlib'
 type GLTFResult = GLTF & {
     nodes: any,
     materials: any
-  }
+}
 const Shirt = () => {
     const snap = useSnapshot(state);
-    const {nodes,materials,...rest}=useGLTF('/shirt_baked.glb') as GLTFResult
-    const logoTexture=useTexture(snap.logoDecal)
-    const fullTexture=useTexture(snap.fullDecal)
+    const { nodes, materials, ...rest } = useGLTF('/shirt_baked.glb') as GLTFResult
+    const logoTexture = useTexture(snap.logoDecal)
+    const fullTexture = useTexture(snap.fullDecal)
+
+    useFrame((state: any, delta: any) => {
+        if (materials?.lamber1?.color && snap?.color) {
+          easing.dampC(materials.lamber1.color, snap.color, 0, 25, delta);
+        }
+      });
+
+ /*    const stateString = JSON.stringify(snap) */
+
     return (
-        <group>
+        <group
+         /*    key={stateString} */
+        >
             <mesh
                 castShadow
                 geometry={nodes.T_Shirt_male.geometry}
                 material={materials.lambert1}
                 material-roughness={1}
                 dispose={null}
+
             >
-             
+                {snap.isFullTexture && (
+                    <Decal
+                        position={[0, 0, 0]}
+                        rotation={[0, 0, 0]}
+                        scale={1}
+                        map={fullTexture}
+                    />
+                )}
+                {snap.isLogoTexture && (
+                    <Decal
+                        position={[0, 0.01, 0.15]}
+                        rotation={[0, 0, 0]}
+                        scale={0.15}
+                        map={logoTexture}
+                        depthTest={false}
+                    />
+                )}
             </mesh>
         </group>
     )
