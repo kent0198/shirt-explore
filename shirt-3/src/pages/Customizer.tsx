@@ -26,8 +26,11 @@ const Customizer = () => {
                 <div className="w-16 border-[2px] rounded-lg flex flex-col justify-center items-center ml-1 py-3 gap-4 ">
                   {EditorTabs.map((tab)=>(
                     <Tab
-                      key={tab.name}
-                      
+                    key={tab.name}
+                    tab={tab}
+                    isFilterTab
+                    isActiveTab=""
+                    handleClick={()=>{}}
                     />
                   ))}
                 </div>
@@ -50,7 +53,10 @@ const Customizer = () => {
               {FilterTabs.map((tab)=>(
                 <Tab
                   key={tab.name}
-                  
+                  tab={tab}
+                  isFilterTab
+                  isActiveTab=""
+                  handleClick={()=>{}}
                 />
               ))}
             </motion.div>
