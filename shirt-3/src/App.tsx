@@ -10,7 +10,6 @@ function App() {
             <Home/>
             <CanvasLayout/>
             <Customizer/>
-          
     </main>
   )
 }

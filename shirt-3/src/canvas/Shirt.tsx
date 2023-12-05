@@ -16,16 +16,16 @@ const Shirt = () => {
     const fullTexture = useTexture(snap.fullDecal)
 
     useFrame((state: any, delta: any) => {
-        if (materials?.lamber1?.color && snap?.color) {
-          easing.dampC(materials.lamber1.color, snap.color, 0, 25, delta);
+        if (materials?.lambert1?.color && snap?.color) {
+          easing.dampC(materials?.lambert1?.color, snap?.color, 2, delta);
         }
       });
 
- /*    const stateString = JSON.stringify(snap) */
+    const stateString = JSON.stringify(snap)
 
     return (
         <group
-         /*    key={stateString} */
+            key={stateString}
         >
             <mesh
                 castShadow
