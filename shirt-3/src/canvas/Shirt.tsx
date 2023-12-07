@@ -17,7 +17,7 @@ const Shirt = () => {
 
     useFrame((state: any, delta: any) => {
         if (materials?.lambert1?.color && snap?.color) {
-          easing.dampC(materials?.lambert1?.color, snap?.color, 2, delta);
+          easing.dampC(materials?.lambert1?.color, snap?.color, 1, delta);
         }
       });
 

@@ -17,6 +17,13 @@ interface propsFilterTab{
   logoShirt:boolean,
   stylishShirt:boolean,
 }
+interface DecalType{
+  stateProperty: string;
+  filterTab: string;
+}
+
+type DecalTypeKeys = keyof typeof DecalTypes;
+
 const Customizer = () => {
   const snap=useSnapshot(state)
   const [file, setFile]=useState('')
@@ -40,7 +47,36 @@ const Customizer = () => {
           return null;
     }
   }
-  console.log(activeEditorTab)
+
+  const handleDecals=(type:DecalTypeKeys , result:any)=>{
+      const decalType=DecalTypes[type]
+      state[decalType.stateProperty]=result
+      if (!activeFilterTab[decalType.filterTab]){
+        handleActiveFilterTab(decalType.filterTab)
+      }
+
+  } 
+  const handleActiveFilterTab=(tabname:string)=>{
+    switch(tabname){
+      case 'logoShirt':
+        state.isLogoTexture=!activeFilterTab[tabname];
+        break;
+      case 'stylishShirt':
+        state.isFullTexture=!activeFilterTab[tabname];
+      default:
+        state.isLogoTexture=true;
+        state.isFullTexture=false
+    }
+  }
+
+  const readFile=(type:any)=>{
+      reader(file)
+        .then((result:any)=>{
+          handleDecals(type, result);
+          setActiveEditorTab('')
+        })
+  }
+
   return (
     <AnimatePresence>
       {
@@ -83,7 +119,7 @@ const Customizer = () => {
                   key={tab.name}
                   tab={tab}
                   isFilterTab
-                  isActiveTab=""
+                  isActiveTab={activeFilterTab[tab.name]}
                   handleClick={()=>{}}
                 />
               ))}

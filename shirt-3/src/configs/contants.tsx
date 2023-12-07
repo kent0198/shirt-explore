@@ -34,4 +34,4 @@ export const EditorTabs = [
       stateProperty: "fullDecal",
       filterTab: "stylishShirt",
     },
-  };
+  } as const;
