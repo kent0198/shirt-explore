@@ -14,8 +14,7 @@ import FilePicker from "@comp/Picker/FilePicker"
 import AIPicker from "@comp/Picker/AIPicker"
 
 interface propsFilterTab{
-  logoShirt:boolean,
-  stylishShirt:boolean,
+  [key: string]: boolean;
 }
 interface DecalType{
   stateProperty: string;
@@ -120,7 +119,7 @@ const Customizer = () => {
                   tab={tab}
                   isFilterTab
                   isActiveTab={activeFilterTab[tab.name]}
-                  handleClick={()=>{}}
+                  handleClick={()=>handleActiveFilterTab(tab.name)}
                 />
               ))}
             </motion.div>
