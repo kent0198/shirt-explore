@@ -73,6 +73,13 @@ const Customizer = () => {
         state.isFullTexture = false;
         break;
     }
+    
+    setActiveFilterTab((prevState) => {
+      return {
+        ...prevState,
+        [tabName]: !prevState[tabName]
+      }
+    })
   }
 
   const readFile = (type: any) => {

@@ -18,6 +18,12 @@ const CustomButton: React.FC<ItypeButton> = ({
                 backgroundColor:snap.color,
                 color:'#fff'
             }
+        }else if(type==='outline'){
+            return {
+                borderWidth: '1px',
+                borderColor:snap.color,
+                color:snap.color    
+            }
         }
     }
     return (
