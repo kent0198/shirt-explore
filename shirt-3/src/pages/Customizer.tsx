@@ -29,12 +29,10 @@ const Customizer = () => {
   const [promot, setPromot] = useState('')
   const [generatingImg, setGeneratingImg] = useState(false)
   const [activeEditorTab, setActiveEditorTab] = useState("")
-
   const [activeFilterTab, setActiveFilterTab] = useState<propsFilterTab>({
     logoShirt: true,
     stylishShirt: false
   })
-
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case 'colorpicker':
@@ -51,14 +49,12 @@ const Customizer = () => {
         return null;
     }
   }
-
   const handleDecals = (type: DecalTypeKeys, result: any) => {
     const decalType = DecalTypes[type]
     state[decalType.stateProperty] = result
     if (!activeFilterTab[decalType.filterTab]) {
       handleActiveFilterTab(decalType.filterTab)
     }
-
   }
   const handleActiveFilterTab = (tabName: string) => {
     switch (tabName) {
@@ -73,7 +69,6 @@ const Customizer = () => {
         state.isFullTexture = false;
         break;
     }
-    
     setActiveFilterTab((prevState) => {
       return {
         ...prevState,
@@ -81,7 +76,6 @@ const Customizer = () => {
       }
     })
   }
-
   const readFile = (type: any) => {
     reader(file)
       .then((result: any) => {
@@ -89,7 +83,6 @@ const Customizer = () => {
         setActiveEditorTab('')
       })
   }
-
   return (
     <AnimatePresence>
       {
@@ -143,5 +136,4 @@ const Customizer = () => {
     </AnimatePresence>
   )
 }
-
 export default Customizer
