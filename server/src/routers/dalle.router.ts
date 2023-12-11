@@ -23,14 +23,17 @@ interface Image {
 router.route("/").post(async (req: Request, res: Response) => {
   try {
     const { prompt } = req.body;
+    console.log('1')
     const response = await openai.images.generate({
       prompt,
       n: 1,
       size: "1024x1024",
       response_format: "b64_json",
     });
+    console.log('2')
     const images: Image[] = response.data as Image[];
     const firstImageData = images[0]?.data[0]?.b64_json;
+    console.log("First Image Data:", firstImageData);
     res.status(200).json({ photo: firstImageData });
   } catch (error) {
     console.error(error);

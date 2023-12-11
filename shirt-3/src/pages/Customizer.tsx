@@ -26,7 +26,7 @@ type DecalTypeKeys = keyof typeof DecalTypes;
 const Customizer = () => {
   const snap = useSnapshot(state)
   const [file, setFile] = useState('')
-  const [promot, setPromot] = useState('')
+  const [prompt, setPrompt] = useState<string>('');
   const [generatingImg, setGeneratingImg] = useState(false)
   const [activeEditorTab, setActiveEditorTab] = useState("")
   const [activeFilterTab, setActiveFilterTab] = useState<propsFilterTab>({
@@ -39,14 +39,42 @@ const Customizer = () => {
         return <ColorPiker />
       case 'filepicker':
         return <FilePicker
-        file={file}
-        setFile={setFile}
-        readFile={readFile}
+          file={file}
+          setFile={setFile}
+          readFile={readFile}
         />
       case 'aipicker':
-        return <AIPicker />
+        return <AIPicker
+          prompt={prompt}
+          setPrompt={setPrompt}
+          generatingImg={generatingImg}
+          handleSubmit={handleSubmit}
+        />
       default:
         return null;
+    }
+  }
+  const handleSubmit = async (type: DecalTypeKeys) => {
+    if (!prompt) return alert('Please enter a prompt')
+    try {
+      setGeneratingImg(true);
+      const response = await fetch('http://127.0.0.1:3000/api/v1/dalle', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          prompt
+        })
+      })
+      const data = await response.json();
+      console.log('data',data)
+      handleDecals(type, `data:image/png;base64,${data.photo}`)
+    } catch (error) {
+      alert(error)
+    }finally{
+      setGeneratingImg(false);
+      setActiveEditorTab("");
     }
   }
   const handleDecals = (type: DecalTypeKeys, result: any) => {

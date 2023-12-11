@@ -4,7 +4,7 @@ import { useSnapshot } from 'valtio'
 interface ItypeButton {
     type?: string,
     title?: string,
-    handleClick: () => void,
+    handleClick?: () => void,
     customStyles?: string,
 }
 

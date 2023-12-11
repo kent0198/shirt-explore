@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^9.89.0",
     "@react-three/fiber": "^8.15.11",
+    "axios": "^1.6.2",
     "framer-motion": "^10.16.9",
     "gltfjsx": "^6.2.15",
     "jquery": "^3.7.1",
